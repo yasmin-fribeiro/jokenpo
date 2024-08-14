@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body style=" background-color: burlywood;">
+
+    <h2>Jokenpô</h2>
+
+    <select>
+        <option>Pedra</option>
+        <option>Papel</option>
+        <option>Tesoura</option>
+    </select>
+
+    <button onclick="jogar()">Jogar</button>
+
+    <h4></h4>
+    <p></p>
+
+    <script>
+
+        let totalrodadas = 0;
+        let vitoriasJogador = 0;
+        let vitoriasComputador = 0;
+
+        function jogar() {
+        const computador = numeroAleatorio(0, 2);
+        const jogador = document.querySelector("select").selectedIndex;
+        if ((computador == 0 && jogador == 2) || (computador == 1 && jogador == 0) || (computador == 2 && jogador == 1)){
+            resultado ("Você perdeu!", computador);
+            vitoriasComputador ++;
+        } else if (computador == jogador) {
+            resultado("Empate.", computador);     
+        } else {
+                resultado("Você ganhou!", computador);
+                vitoriasJogador++;
+        }
+        }    
+
+        totalrodadas ++;
+
+        function resultadofinal() {
+            if (jogar() > 5) {
+                alert ('Jogo finalizado')
+                resultadofinal ("Jogador:" + vitoriasJogador, "Computador:" + computador);
+            } else {
+                jogar.continue;
+            }
+            } 
+        
+
+        function resultado (mensagem, computador){
+            const opcoes = ['Pedra', 'Papel', 'Tesoura']
+            document.querySelector("h4").innerHTML = mensagem;
+            document.querySelector("p").innerHTML = 'O computador escolheu ' + opcoes[computador];
+        }
+
+        function numeroAleatorio(min, max) {
+            return (Math.random() * (max - min) + min).toFixed();
+        }  
+     
+    </script>
+
+    </body>
+    </html>
